@@ -4,10 +4,10 @@ public partial class StartMenu : ContentPage
 {
 
 
-	string[] diffuclty = { "Mix", "Easy", "Medium", "Hard" };
+    string[] diffuclty = { "Mix", "Easy", "Medium", "Hard" };
 
-	//to recognize the key is loaded properly within the api
-	Dictionary<short, string> responses = new Dictionary<short, string>()
+    //to recognize the key is loaded properly within the api
+    Dictionary<short, string> responses = new Dictionary<short, string>()
     {
         {0, "Success" },
         {1, "No Results" },
