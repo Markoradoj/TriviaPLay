@@ -8,5 +8,8 @@
             Text="Option Test"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        
+        
+        
     </VerticalStackLayout>
 </ContentPage>

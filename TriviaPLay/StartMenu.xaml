@@ -1,8 +1,25 @@
-<?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaPLay.StartMenu"
              Title="StartMenu">
+    <VerticalStackLayout>
 
-   
+
+
+        <Picker    x:Name="selCategory"
+                   HorizontalTextAlignment="Center"
+                   Title="Select Category"
+                   FontSize="20"
+                   Margin="0,0,0,-1"/>
+
+        <Picker    x:Name="selDifficulty"
+            HorizontalTextAlignment="Center"
+            Title="Select Difficulty"
+            FontSize="20"
+            Margin="0,0,0,-1"/>
+
+
+
+    </VerticalStackLayout>
 </ContentPage>
