@@ -30,7 +30,7 @@ public partial class StartMenu : ContentPage
 		{14, "Televsion" },
 		{15, "Video Games" },
 		{16, "Board Games" },
-		{17,  "Nature" },
+		{17, "Nature" },
 		{18, "Computers" },
 		{19, "Mathematics" },
 		{20, "Mythology" },
@@ -52,6 +52,14 @@ public partial class StartMenu : ContentPage
 	public StartMenu()
 	{
 		InitializeComponent();
+
+		//picker setups
+		selCategory.ItemsSource = categoryType.Keys.ToList();
+		selDifficulty.ItemsSource = diffuclty;
+
+		selCategory.SelectedIndex = 0;
+		selDifficulty.SelectedIndex = 0;
+
 	}
 
 
