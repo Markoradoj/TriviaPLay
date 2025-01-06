@@ -8,16 +8,21 @@ namespace TriviaPLay;
 
 public partial class StartMenu : ContentPage
 {
+	//variables
 	private List<Question> _questions;
 	private Dictionary<string, string> _categories;
+	int currentQuestionIndex = 0;
+	private string correctAnswer;
 
 
-    public StartMenu()
+	public StartMenu()
 	{
 		InitializeComponent();
+		LoadCatagory();
 
 	}
 
+	//Loading categories via API
 	private async void LoadCatagory()
 	{
 		try
@@ -34,28 +39,64 @@ public partial class StartMenu : ContentPage
 			}
 		}
 
+
+
 		catch (Exception ex)
 		{
 			await DisplayAlert("Notice", $"Failed to load catagories: {ex.Message}", "OK");
 		}
 	}
-    private void Button_Clicked(object sender, EventArgs e)
-    {
 
-    }
 
-    public class CategoryResponse
-    {
-        [JsonProperty("trivia_categories")]
-        public List<Category> TriviaCategories { get; set; }
-    }
+	private async void LoadQuestions(string categoryID, string difficulty)
+	{
+		try
+		{
+			string url = $"https://opentdb.com/api.php?amount=10&type=multiple";
+			if (!string.IsNullOrEmpty(categoryID))
+				url += $"&category={categoryID}";
+			if (!string.IsNullOrEmpty(difficulty))
+				url += $"&difficulty={difficulty}";
 
-    public class Category
-    {
-        [JsonProperty("id")]
-        public int Id { get; set; }
+			using var client = new HttpClient();
+			string response = await client.GetStringAsync(url);
+			var triviaResponse = JsonConvert.DeserializeObject<TriviaResponse>(response);
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
-    }
+			_questions = triviaResponse.Results;
+			currentQuestionIndex = 0;
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("Notice", $"Failed to load Questions: {ex.Message}","OK");
+		}
+}
+	//start button
+	private void Button_Clicked(object sender, EventArgs e)
+		{
+
+		}
+
+
+
+	//Helper class for deserialization
+	public class CategoryResponse
+	{
+		[JsonProperty("trivia_categories")]
+		public List<Category> TriviaCategories { get; set; }
+	}
+
+	public class Category
+	{
+		[JsonProperty("id")]
+		public int Id { get; set; }
+
+		[JsonProperty("name")]
+		public string Name { get; set; }
+	}
+
+	public class TriviaResponse
+	{
+		[JsonProperty("results")]
+		public List<Question> Results { get; set; }
+	}
 }
