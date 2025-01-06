@@ -9,13 +9,11 @@ using Newtonsoft.Json;
 namespace TriviaPLay
 {
     [Serializable]
-    public class Questions
+    public class Question
     {
-        [JsonProperty("category")]
-        public string category { get; set; }
 
         [JsonProperty("question")]
-        public string question {  get; set; }
+        public string question { get; set; }
 
         [JsonProperty("difficulty")]
         public string difficulty { get; set; }
@@ -26,5 +24,20 @@ namespace TriviaPLay
         [JsonProperty("incorrect_answer")]
         public string IncorrectAnswers { get; set; }
 
+    }
+
+    public class CategoryResponse
+    {
+        [JsonProperty("trivia_categories")]
+        public List<Category> TriviaCategories { get; set; }
+    }
+
+    public class Category
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }
