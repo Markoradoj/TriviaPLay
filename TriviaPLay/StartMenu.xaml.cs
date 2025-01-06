@@ -44,5 +44,18 @@ public partial class StartMenu : ContentPage
 
     }
 
+    public class CategoryResponse
+    {
+        [JsonProperty("trivia_categories")]
+        public List<Category> TriviaCategories { get; set; }
+    }
 
+    public class Category
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+    }
 }
