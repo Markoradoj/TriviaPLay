@@ -19,7 +19,11 @@
             FontSize="20"
             Margin="0,0,0,-1"/>
 
-
-
+        <Button Text="Start"
+                FontSize="18"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Margin="0,0,0,20"
+                Clicked="StartGameBtn"/>
     </VerticalStackLayout>
 </ContentPage>
