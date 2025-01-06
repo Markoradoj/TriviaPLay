@@ -17,8 +17,16 @@
             HorizontalTextAlignment="Center"
             Title="Select Difficulty"
             FontSize="20"
-            Margin="0,0,0,-1"/>
-        
+            Margin="0,0,0,-1">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>easy
+                    </x:String>
+                    <x:String>medium</x:String>
+                    <x:String>hard</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
 
 
         <Button Text="Start"
