@@ -28,6 +28,15 @@
             </Picker.ItemsSource>
         </Picker>
 
+        <Label x:Name="questionLbl"
+               Text="null"
+               FontSize="23"
+               TextColor="White"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"/>
+        
+        
+
 
         <Button Text="Start"
                 FontSize="18"

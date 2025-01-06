@@ -47,7 +47,7 @@ public partial class StartMenu : ContentPage
 		}
 	}
 
-
+	//Loading questions in the label
 	private async void LoadQuestions(string categoryID, string difficulty)
 	{
 		try
@@ -75,6 +75,19 @@ public partial class StartMenu : ContentPage
 		{
 
 		}
+
+
+
+
+	private void showQuestion()
+	{
+		if (_questions == null || !_questions.Any())
+		{
+
+		}
+	}
+
+
 
 
 
