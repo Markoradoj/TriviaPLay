@@ -11,8 +11,18 @@ namespace TriviaPLay
     public class Questions
     {
         [JsonProperty("category")]
-        public string Category { get; set; }
+        public string category { get; set; }
 
+        [JsonProperty("question")]
+        public string question {  get; set; }
 
+        [JsonProperty("difficulty")]
+        public string difficulty { get; set; }
+
+        [JsonProperty("correct_answer")]
+        public string CorrectAnswer { get; set; }
+
+        [JsonProperty("incorrect_answer")]
+        public string IncorrectAnswers { get; set; }
     }
 }
