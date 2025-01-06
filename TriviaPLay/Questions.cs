@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
+
 namespace TriviaPLay
 {
     [Serializable]
@@ -24,5 +25,6 @@ namespace TriviaPLay
 
         [JsonProperty("incorrect_answer")]
         public string IncorrectAnswers { get; set; }
+
     }
 }
