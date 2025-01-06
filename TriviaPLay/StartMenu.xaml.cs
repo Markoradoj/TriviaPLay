@@ -1,3 +1,5 @@
+
+
 namespace TriviaPLay;
 
 public partial class StartMenu : ContentPage
@@ -62,5 +64,8 @@ public partial class StartMenu : ContentPage
 
 	}
 
+    private void Button_Clicked(object sender, EventArgs e)
+    {
 
+    }
 }
