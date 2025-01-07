@@ -22,7 +22,7 @@ namespace TriviaPLay
         public string CorrectAnswer { get; set; }
 
         [JsonProperty("incorrect_answer")]
-        public string IncorrectAnswers { get; set; }
+        public List <string> IncorrectAnswers { get; set; }
 
     }
 

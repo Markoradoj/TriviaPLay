@@ -7,13 +7,13 @@
 
 
 
-        <Picker    x:Name="selCategory"
+        <Picker x:Name="selCategory"
                    HorizontalTextAlignment="Center"
                    Title="Select Category"
                    FontSize="20"
                    Margin="0,0,0,-1"/>
 
-        <Picker    x:Name="selDifficulty"
+        <Picker x:Name="selDifficulty"
             HorizontalTextAlignment="Center"
             Title="Select Difficulty"
             FontSize="20"

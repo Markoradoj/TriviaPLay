@@ -1,18 +1,18 @@
 
 using Newtonsoft.Json;
-using System.ComponentModel;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json.Nodes;
+using System.Net.Http;
+using System.Linq;
+
 
 namespace TriviaPLay;
 
 public partial class StartMenu : ContentPage
 {
-	//variables
-	private List<Question> _questions;
-	private Dictionary<string, string> _categories;
-	int currentQuestionIndex = 0;
-	private string correctAnswer;
+    //variables
+    private List<Question> _questions;
+    private Dictionary<string, string> _categories;
+	int _currentQuestionIndex = 0;
+	public string _correctAnswer;
 
 
 	public StartMenu()
@@ -63,7 +63,7 @@ public partial class StartMenu : ContentPage
 			var triviaResponse = JsonConvert.DeserializeObject<TriviaResponse>(response);
 
 			_questions = triviaResponse.Results;
-			currentQuestionIndex = 0;
+			_currentQuestionIndex = 0;
 		}
 		catch (Exception ex)
 		{
@@ -78,8 +78,8 @@ public partial class StartMenu : ContentPage
 
 
 
-
-	public void showQuestion()
+	
+	private void showQuestion()
 	{
 		if (_questions == null || !_questions.Any())
 		{
@@ -87,16 +87,23 @@ public partial class StartMenu : ContentPage
 			return;
 
 		}
-		if (currentQuestionIndex < _questions.Count)
+		if (_currentQuestionIndex < _questions.Count)
 		{
 			DisplayAlert("Notice", "You've completed all the questions", "OK");
 			return;
 		}
 
+		var question = _questions[_currentQuestionIndex];
+		_correctAnswer = question.CorrectAnswer;
 
+		//shuffles the answers
+		var options = question.IncorrectAnswers.Append(_correctAnswer).OrderBy(X => Guid.NewGuid()).ToList();
 
+		questionLabel.Text = System.Net.WebUtility.HtmlDecode(question.question);
+		Option1Ans.Text = System.Net.WebUtility.HtmlDecode(options[0]);
 
-
+		
+		
 	}
 
 
