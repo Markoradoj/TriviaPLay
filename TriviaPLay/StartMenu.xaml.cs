@@ -79,14 +79,25 @@ public partial class StartMenu : ContentPage
 
 
 
-	private void showQuestion()
+	public void showQuestion()
 	{
 		if (_questions == null || !_questions.Any())
 		{
+			questionLabel.Text = "No questions available, please select diffuclty and category";
+			return;
 
 		}
-	}
+		if (currentQuestionIndex < _questions.Count)
+		{
+			DisplayAlert("Notice", "You've completed all the questions", "OK");
+			return;
+		}
 
+
+
+
+
+	}
 
 
 

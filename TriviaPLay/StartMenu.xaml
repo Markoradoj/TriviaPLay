@@ -28,10 +28,9 @@
             </Picker.ItemsSource>
         </Picker>
 
-        <Label x:Name="questionLbl"
-               Text="null"
+        <Label x:Name="questionLabel"
+               Text="Question not found, select a category"
                FontSize="23"
-               TextColor="White"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand"/>
         
