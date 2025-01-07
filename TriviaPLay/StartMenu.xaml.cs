@@ -70,11 +70,7 @@ public partial class StartMenu : ContentPage
 			await DisplayAlert("Notice", $"Failed to load Questions: {ex.Message}","OK");
 		}
 }
-	//start button
-	private void Button_Clicked(object sender, EventArgs e)
-		{
-
-		}
+	
 
 
 
@@ -131,12 +127,40 @@ public partial class StartMenu : ContentPage
 			_currentQuestionIndex++;
 			showQuestion();
 		}
+
+	}
+
+	//start game
+	private void Button_Clicked(object sender, EventArgs e)
+	{
+		if (selCategory.SelectedIndex == -1)
+		{
+			DisplayAlert("Error", "Please Select a category", "OK");
+			return;
+		}
+
+		if (selDifficulty.SelectedIndex == -1)
+		{
+			DisplayAlert("Error", "Please select a Diffculty", "OK");
+			return;
+		}
 	}
 
 
 
-	//Helper class for deserialization
-	public class CategoryResponse
+
+
+
+
+
+
+
+
+
+
+
+    //Helper class for deserialization
+    public class CategoryResponse
 	{
 		[JsonProperty("trivia_categories")]
 		public List<Category> TriviaCategories { get; set; }
