@@ -101,11 +101,37 @@ public partial class StartMenu : ContentPage
 
 		questionLabel.Text = System.Net.WebUtility.HtmlDecode(question.question);
 		Option1Ans.Text = System.Net.WebUtility.HtmlDecode(options[0]);
+        Option2Ans.Text = System.Net.WebUtility.HtmlDecode(options[1]);
+        Option3Ans.Text = System.Net.WebUtility.HtmlDecode(options[2]);
+        Option4Ans.Text = System.Net.WebUtility.HtmlDecode(options[3]);
 
-		
-		
+		Option1Ans.IsVisible = true;
+        Option2Ans.IsVisible = true;
+        Option3Ans.IsVisible = true;
+        Option4Ans.IsVisible = true;
+
+    }
+
+	private void OnOptionClicked(object sender, EventArgs e)
+	{
+		if (sender is Button button)
+		{
+			string selectedAnswer = button.Text;
+
+			if (selectedAnswer == _correctAnswer)
+			{
+				DisplayAlert("Coorect", "Nice", "Next");
+
+			}
+			else
+			{
+				DisplayAlert("Incorrect", $"The correct anaswer is was {_correctAnswer}", "Next");
+
+			}
+			_currentQuestionIndex++;
+			showQuestion();
+		}
 	}
-
 
 
 
