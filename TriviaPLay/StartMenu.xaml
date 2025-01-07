@@ -33,8 +33,12 @@
                FontSize="23"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand"/>
-        
-        
+
+        <Button x:Name="Option1Ans" Text="Option 1" IsVisible="False" Clicked="OnOptionClicked"/>
+        <Button x:Name="Option2Ans" Text="Option 2" IsVisible="False" Clicked="OnOptionClicked"/>
+        <Button x:Name="Option3Ans" Text="Option 3" IsVisible="False" Clicked="OnOptionClicked"/>
+        <Button x:Name="Option4Ans" Text="Option 4" IsVisible="False" Clicked="OnOptionClicked"/>
+
 
 
         <Button Text="Start"
