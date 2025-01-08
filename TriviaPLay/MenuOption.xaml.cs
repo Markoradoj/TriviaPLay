@@ -7,6 +7,7 @@ public partial class MenuOption : ContentPage
 		InitializeComponent();
 	}
 
+    //Sets the color buttons globally
 	private void SetBlueButtonClicked(object sender , EventArgs e)
 	{
 		Application.Current.Resources["ButtonBackgroundColor"] = Colors.Blue;
@@ -22,7 +23,7 @@ public partial class MenuOption : ContentPage
         Application.Current.Resources["ButtonBackgroundColor"] = Colors.Green;
     }
 
-
+    //goes back to menu
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {
         await Navigation.PopToRootAsync();
