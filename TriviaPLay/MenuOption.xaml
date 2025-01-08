@@ -3,14 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaPLay.MenuOption"
              Title="MenuOption">
-    <VerticalStackLayout>
+    <VerticalStackLayout Padding="15" Spacing="15">
         <Label 
-            Text="Option Test"
+            Text="Change color button"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        
-        
-        
-        
+
+
+        <Button Text="Red"
+                BackgroundColor="Red"
+                TextColor="White"
+                Clicked="OnChangeColorClicked"/>
+
+        <Button Text="Red"
+         BackgroundColor="Green"
+         TextColor="White"
+         Clicked="OnChangeColorClicked"/>
+
+
+        <Button Text="Red"
+         BackgroundColor="Blue"
+         TextColor="White"
+         Clicked="OnChangeColorClicked"/>
+
+
     </VerticalStackLayout>
 </ContentPage>
