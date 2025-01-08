@@ -91,28 +91,25 @@ public partial class StartMenu : ContentPage
 			return;
 		}
 
-		
 
-		
-		var question = _questions[_currentQuestionIndex++];
-		_correctAnswer = question.correct_answers;
 
-		var answers = new List<string>(question.incoorect_answers)
-		{
-			question.correct_answers
-		};
 
-		
+		var question = _questions[_currentQuestionIndex];
+
+		//shuffle answers
+		var answers = new List<string>(question.incoorect_answers) { _correctAnswer };
 		var random = new Random();
 		answers = answers.OrderBy(_ => random.Next()).ToList();
 
 
+		//answer lael to buttons
 		questionLabel.Text = System.Net.WebUtility.HtmlDecode(question.question);
 		Option1Ans.Text = System.Net.WebUtility.HtmlDecode(answers[0]);
         Option2Ans.Text = System.Net.WebUtility.HtmlDecode(answers[1]);
         Option3Ans.Text = System.Net.WebUtility.HtmlDecode(answers[2]);
         Option4Ans.Text = System.Net.WebUtility.HtmlDecode(answers[3]);
 
+		//ensure buttons are visible
 		Option1Ans.IsVisible = true;
         Option2Ans.IsVisible = true;
         Option3Ans.IsVisible = true;
@@ -122,14 +119,15 @@ public partial class StartMenu : ContentPage
 
 	private void OnOptionClicked(object sender, EventArgs e)
 	{
+
 		if (sender is Button button)
 		{
 			string selectedAnswer = button.Text;
-			if (selectedAnswer == _correctAnswer)
+            if (selectedAnswer == _correctAnswer)
 			{
 				DisplayAlert("Coorect", "Nice", "Next");
 
-			}
+            }
 			else
 			{
 				DisplayAlert("Incorrect", $"The correct anaswer is was {_correctAnswer}", "Next");
@@ -172,6 +170,7 @@ public partial class StartMenu : ContentPage
 		{
 			LoadQuestions(categoryID, selectedDifficulty);
 		}
+
 	}
 
 
