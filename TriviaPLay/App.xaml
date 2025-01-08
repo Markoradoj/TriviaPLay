@@ -5,8 +5,9 @@
              x:Class="TriviaPLay.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Color x:Key="ButtonBackgroundColor">Blue</Color>
             <Style TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{DynamicResource ButtonBackgroundColour}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource ButtonBackgroundColor}"/>
             </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
