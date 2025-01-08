@@ -58,6 +58,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\title.png" />
+	  <None Remove="Resources\Images\underwater1.jpg" />
+	  <None Remove="Resources\Images\underwater2.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

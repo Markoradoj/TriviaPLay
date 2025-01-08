@@ -2,18 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaPLay.MainPage">
-    <StackLayout Padding="20" VerticalOptions="Center">
+    <Grid>
+        <Image Source="underwater1.jpg"
+                Aspect="AspectFill"
+               VerticalOptions="FillAndExpand"
+               HorizontalOptions="FillAndExpand"/>
 
 
 
-        <Image Source="title.png"
+        <StackLayout Padding="20" VerticalOptions="Center">
+
+
+
+            <Image Source="title.png"
        HorizontalOptions="Center"
        VerticalOptions="Center"
        WidthRequest="300"
        HeightRequest="300"/>
-    
-   
-        <Button Text="START"
+
+
+            <Button Text="START"
                 FontSize="24"
                 HorizontalOptions="Center"
                 Clicked="StartButtonClicked"/>
@@ -24,11 +32,11 @@
 
 
 
-        <Button Text="OPTION"
+            <Button Text="OPTION"
                 FontSize="24"
                 HorizontalOptions="Center"
                 Margin="0,20,0,0"
                 Clicked="Button_Clicked" />
-    </StackLayout>
-
+        </StackLayout>
+    </Grid>
 </ContentPage>

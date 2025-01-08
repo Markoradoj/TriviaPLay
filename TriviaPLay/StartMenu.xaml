@@ -3,45 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaPLay.StartMenu"
              Title="StartMenu">
-    <VerticalStackLayout>
+    <Grid>
+        <Image Source="underwater2.jpg"
+        Aspect="AspectFill"
+       VerticalOptions="FillAndExpand"
+       HorizontalOptions="FillAndExpand"/>
 
 
 
-        <Picker x:Name="selCategory"
+        <VerticalStackLayout>
+
+
+
+            <Picker x:Name="selCategory"
                    HorizontalTextAlignment="Center"
                    Title="Select Category"
                    FontSize="20"
                    Margin="0,0,0,-1"/>
 
-        <Picker x:Name="selDifficulty"
+            <Picker x:Name="selDifficulty"
             HorizontalTextAlignment="Center"
             Title="Select Difficulty"
             FontSize="20"    
             Margin="0,0,0,-1">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>easy
-                    </x:String>
-                    <x:String>medium</x:String>
-                    <x:String>hard</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>easy
+                        </x:String>
+                        <x:String>medium</x:String>
+                        <x:String>hard</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
-        <Label x:Name="questionLabel"
+            <Label x:Name="questionLabel"
                Text="Question not found, select a category"
                FontSize="23"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand"/>
 
-        <Button x:Name="Option1Ans" Text="Option 1" IsVisible="False" Clicked="OnOptionClicked"/>
-        <Button x:Name="Option2Ans" Text="Option 2" IsVisible="False" Clicked="OnOptionClicked"/>
-        <Button x:Name="Option3Ans" Text="Option 3" IsVisible="False" Clicked="OnOptionClicked"/>
-        <Button x:Name="Option4Ans" Text="Option 4" IsVisible="False" Clicked="OnOptionClicked"/>
+            <Button x:Name="Option1Ans" Text="Option 1" IsVisible="False" Clicked="OnOptionClicked"/>
+            <Button x:Name="Option2Ans" Text="Option 2" IsVisible="False" Clicked="OnOptionClicked"/>
+            <Button x:Name="Option3Ans" Text="Option 3" IsVisible="False" Clicked="OnOptionClicked"/>
+            <Button x:Name="Option4Ans" Text="Option 4" IsVisible="False" Clicked="OnOptionClicked"/>
 
 
 
-        <Button Text="Start"
+            <Button Text="Start"
                 FontSize="18"
                 HorizontalOptions="Center"
                 VerticalOptions="End"
@@ -49,5 +57,6 @@
                 Clicked="Button_Clicked"/>
 
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
