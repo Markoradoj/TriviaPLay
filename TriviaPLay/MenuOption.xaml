@@ -13,18 +13,18 @@
         <Button Text="Red"
                 BackgroundColor="Red"
                 TextColor="White"
-                Clicked="OnChangeColorClicked"/>
+                Clicked="SetRedButtonClicked"/>
 
         <Button Text="Red"
          BackgroundColor="Green"
          TextColor="White"
-         Clicked="OnChangeColorClicked"/>
+         Clicked="SetGreenButtonClicked"/>
 
 
         <Button Text="Red"
          BackgroundColor="Blue"
          TextColor="White"
-         Clicked="OnChangeColorClicked"/>
+         Clicked="SetBlueButtonClicked"/>
 
 
     </VerticalStackLayout>
