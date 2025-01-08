@@ -18,12 +18,14 @@
             <Picker x:Name="selCategory"
                    HorizontalTextAlignment="Center"
                    Title="Select Category"
+                    TextColor="Black"
                    FontSize="20"
                    Margin="0,0,0,-1"/>
 
             <Picker x:Name="selDifficulty"
             HorizontalTextAlignment="Center"
             Title="Select Difficulty"
+                    TextColor="Black"
             FontSize="20"    
             Margin="0,0,0,-1">
                 <Picker.ItemsSource>
@@ -38,16 +40,25 @@
 
             <Label x:Name="questionLabel"
                Text="Question not found, select a category"
+                   TextColor="Black"
                FontSize="23"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand"/>
 
-            <Button x:Name="Option1Ans" Text="Option 1" IsVisible="False" Clicked="OnOptionClicked"/>
-            <Button x:Name="Option2Ans" Text="Option 2" IsVisible="False" Clicked="OnOptionClicked"/>
-            <Button x:Name="Option3Ans" Text="Option 3" IsVisible="False" Clicked="OnOptionClicked"/>
-            <Button x:Name="Option4Ans" Text="Option 4" IsVisible="False" Clicked="OnOptionClicked"/>
+
+            <Grid RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="*,*"
+                  Padding="10">
 
 
+
+
+                <Button x:Name="Option1Ans" Text="Option 1" IsVisible="False" Clicked="OnOptionClicked" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start"/>
+                <Button x:Name="Option2Ans" Text="Option 2" IsVisible="False" Clicked="OnOptionClicked" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start"/>
+                <Button x:Name="Option3Ans" Text="Option 3" IsVisible="False" Clicked="OnOptionClicked" Grid.Row="0" Grid.Column="1" HorizontalOptions="End"/>
+                <Button x:Name="Option4Ans" Text="Option 4" IsVisible="False" Clicked="OnOptionClicked" Grid.Row="1" Grid.Column="1" HorizontalOptions="End"/>
+
+            </Grid>
 
             <Button Text="Start"
                 FontSize="18"
@@ -56,6 +67,21 @@
                 Margin="0,0,0,20"
                 Clicked="Button_Clicked"/>
 
+            <Label x:Name="CorrectWord"
+                   Text="Correct!"
+                   TextColor="LightGreen"
+                   FontSize="25"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Opacity="0"/>
+
+        <Label x:Name="WrongWord"
+        Text="WRONG"
+        TextColor="DarkRed"
+        FontSize="25"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Opacity="0"/>
 
         </VerticalStackLayout>
     </Grid>
