@@ -31,13 +31,14 @@ public partial class StartMenu : ContentPage
 	private async void LoadCatagory()
 	{
 		try
-		{	//getting the client from the response serial
+		{	//getting the client from the response
 			using var client = new HttpClient();
 			string response = await client.GetStringAsync("https://opentdb.com/api_category.php");
 			var categoryResponse = JsonConvert.DeserializeObject<CategoryResponse>(response);
 
 			_categories = categoryResponse.TriviaCategories.ToDictionary(c => c.Name, c => c.Id.ToString());
 
+			//category select
 			foreach (var category in _categories.Keys)
 			{
 				selCategory.Items.Add(category);
@@ -57,7 +58,7 @@ public partial class StartMenu : ContentPage
 	{
 		try
 		{
-			string url = $"https://opentdb.com/api.php?amount=10&type=multiple";
+			string url = $"https://opentdb.com/api.php?amount=10&type=multiple"; //loads questions from multiple type section
 			if (!string.IsNullOrEmpty(categoryID))
 				url += $"&category={categoryID}";
 			if (!string.IsNullOrEmpty(difficulty))
@@ -80,7 +81,7 @@ public partial class StartMenu : ContentPage
 
 
 
-
+	//shows when no questions selected or completed all questions
 	private void showQuestion()
 	{
 		if (_questions == null || !_questions.Any())
@@ -135,7 +136,7 @@ public partial class StartMenu : ContentPage
 
 			if (selectedAnswer == _correctAnswer)
 			{
-				DisplayAlert("Correct", "Nice", "Next");
+				
 				AnimateText();
 				correctSound();
 			}
