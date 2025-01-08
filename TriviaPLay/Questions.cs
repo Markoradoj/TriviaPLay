@@ -18,11 +18,11 @@ namespace TriviaPLay
         [JsonProperty("difficulty")]
         public string difficulty { get; set; }
 
-        [JsonProperty("correct_answer")]
-        public string CorrectAnswer { get; set; }
+        [JsonProperty("correct_answers")]
+        public string correct_answers { get; set; }
 
-        [JsonProperty("incorrect_answer")]
-        public List <string> IncorrectAnswers { get; set; }
+        [JsonProperty("incorrect_answers")]
+        public string[] incoorect_answers { get; set; }
 
     }
 
