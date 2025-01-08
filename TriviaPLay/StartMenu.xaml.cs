@@ -1,8 +1,10 @@
-
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Plugin.Maui.Audio;
 using System.Net.Http;
 using System.Linq;
 using System.Linq.Expressions;
+
 
 
 
@@ -10,17 +12,18 @@ namespace TriviaPLay;
 
 public partial class StartMenu : ContentPage
 {
-    //variables
-    private List<Question> _questions;
-    private Dictionary<string, string> _categories;
+	//variables
+	private List<Question> _questions;
+	private Dictionary<string, string> _categories;
 	int _currentQuestionIndex = 0;
 	public string _correctAnswer;
-
+	private IAudioManager audioManager;
 
 	public StartMenu()
 	{
 		InitializeComponent();
 		LoadCatagory();
+
 
 	}
 
@@ -70,14 +73,14 @@ public partial class StartMenu : ContentPage
 		}
 		catch (Exception ex)
 		{
-			await DisplayAlert("Notice", $"Failed to load Questions: {ex.Message}","OK");
+			await DisplayAlert("Notice", $"Failed to load Questions: {ex.Message}", "OK");
 		}
-}
-	
+	}
 
 
 
-	
+
+
 	private void showQuestion()
 	{
 		if (_questions == null || !_questions.Any())
@@ -103,7 +106,7 @@ public partial class StartMenu : ContentPage
 		for (int i = answers.Count - 1; i >= 0; i--)
 		{
 			int j = rand.Next(i + 1);
-			(answers[i], answers[j]) = (answers[j],answers[i]);
+			(answers[i], answers[j]) = (answers[j], answers[i]);
 		}
 
 
@@ -111,17 +114,17 @@ public partial class StartMenu : ContentPage
 		//answer lael to buttons
 		questionLabel.Text = System.Net.WebUtility.HtmlDecode(question.question);
 		Option1Ans.Text = System.Net.WebUtility.HtmlDecode(answers[0]);
-        Option2Ans.Text = System.Net.WebUtility.HtmlDecode(answers[1]);
-        Option3Ans.Text = System.Net.WebUtility.HtmlDecode(answers[2]);
-        Option4Ans.Text = System.Net.WebUtility.HtmlDecode(answers[3]);
+		Option2Ans.Text = System.Net.WebUtility.HtmlDecode(answers[1]);
+		Option3Ans.Text = System.Net.WebUtility.HtmlDecode(answers[2]);
+		Option4Ans.Text = System.Net.WebUtility.HtmlDecode(answers[3]);
 
 		//ensure buttons are visible
 		Option1Ans.IsVisible = true;
-        Option2Ans.IsVisible = true;
-        Option3Ans.IsVisible = true;
-        Option4Ans.IsVisible = true;
+		Option2Ans.IsVisible = true;
+		Option3Ans.IsVisible = true;
+		Option4Ans.IsVisible = true;
 
-    }
+	}
 
 	private void OnOptionClicked(object sender, EventArgs e)
 	{
@@ -130,20 +133,22 @@ public partial class StartMenu : ContentPage
 		{
 			string selectedAnswer = button.Text;
 
-            if (selectedAnswer == _correctAnswer)
+			if (selectedAnswer == _correctAnswer)
 			{
-				DisplayAlert("Coorect", "Nice", "Next");
-
-            }
+				DisplayAlert("Correct", "Nice", "Next");
+				AnimateText();
+				correctSound();
+			}
 			else
 			{
 				DisplayAlert("Incorrect", $"The correct anaswer is was {_correctAnswer}", "Next");
-
+				AnimateTextWrong();
+				wrongSound();
 			}
 			_currentQuestionIndex++;
 			showQuestion();
 			//show next question or end game
-			if(_currentQuestionIndex < _questions.Count)
+			if (_currentQuestionIndex < _questions.Count)
 			{
 				showQuestion();
 			}
@@ -154,7 +159,7 @@ public partial class StartMenu : ContentPage
 		}
 
 	}
-	
+
 
 	//start game
 	private void Button_Clicked(object sender, EventArgs e)
@@ -181,11 +186,42 @@ public partial class StartMenu : ContentPage
 	}
 
 
+	//animation text
+	private async void AnimateText()
+	{
+       
+
+		CorrectWord.Opacity = 0;
+		await CorrectWord.FadeTo(1, 500);
+		await Task.Delay(1000);
+		await CorrectWord.FadeTo(0, 500);
+	}
+
+    private async void AnimateTextWrong()
+    {
+		WrongWord.Opacity = 0;
+		await WrongWord.FadeTo(1, 500);
+		await Task.Delay(1000);
+		await WrongWord.FadeTo(0, 500);
+
+    }
 
 
+	private async void correctSound()
+	{
 
+		var audioplayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("correct.mp3"));
+		audioplayer.Play();
+		audioplayer.Dispose();
+	}
 
+    private async void wrongSound()
+    {
 
+        var audioplayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("incorrect.mp3"));
+        audioplayer.Play();
+		audioplayer.Dispose();
+    }
 
 
 
