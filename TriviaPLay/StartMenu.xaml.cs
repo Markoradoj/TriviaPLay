@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 
+
 namespace TriviaPLay;
 
 public partial class StartMenu : ContentPage
@@ -97,9 +98,14 @@ public partial class StartMenu : ContentPage
 		var question = _questions[_currentQuestionIndex];
 
 		//shuffle answers
-		var answers = new List<string>(question.incoorect_answers) { _correctAnswer };
-		var random = new Random();
-		answers = answers.OrderBy(_ => random.Next()).ToList();
+		var answers = new List<string>(question.incorrect_answers) { _correctAnswer };
+		Random rand = new Random();
+		for (int i = answers.Count - 1; i >= 0; i--)
+		{
+			int j = rand.Next(i + 1);
+			(answers[i], answers[j]) = (answers[j],answers[i]);
+		}
+
 
 
 		//answer lael to buttons
@@ -123,6 +129,7 @@ public partial class StartMenu : ContentPage
 		if (sender is Button button)
 		{
 			string selectedAnswer = button.Text;
+
             if (selectedAnswer == _correctAnswer)
 			{
 				DisplayAlert("Coorect", "Nice", "Next");
