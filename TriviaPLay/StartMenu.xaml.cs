@@ -31,7 +31,7 @@ public partial class StartMenu : ContentPage
 	private async void LoadCatagory()
 	{
 		try
-		{
+		{	//getting the client from the response serial
 			using var client = new HttpClient();
 			string response = await client.GetStringAsync("https://opentdb.com/api_category.php");
 			var categoryResponse = JsonConvert.DeserializeObject<CategoryResponse>(response);
@@ -45,7 +45,7 @@ public partial class StartMenu : ContentPage
 		}
 
 
-
+		//error message if the api fails to catch
 		catch (Exception ex)
 		{
 			await DisplayAlert("Notice", $"Failed to load catagories: {ex.Message}", "OK");
@@ -206,15 +206,17 @@ public partial class StartMenu : ContentPage
 
     }
 
-
+	//plays sound when correct
 	private async void correctSound()
 	{
 
 		var audioplayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("correct.mp3"));
 		audioplayer.Play();
+		//audio stops once it pkays
 		audioplayer.Dispose();
 	}
 
+	//plays sound when incorrect
     private async void wrongSound()
     {
 

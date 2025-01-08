@@ -60,6 +60,8 @@
 	  <None Remove="Resources\Images\title.png" />
 	  <None Remove="Resources\Images\underwater1.jpg" />
 	  <None Remove="Resources\Images\underwater2.jpg" />
+	  <None Remove="Resources\raw\correct.mp3" />
+	  <None Remove="Resources\raw\incorrect.mp3" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -67,6 +69,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Plugin.Maui.Audio" Version="3.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
