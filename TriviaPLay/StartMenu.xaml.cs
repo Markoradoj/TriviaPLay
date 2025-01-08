@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Linq;
+using System.Linq.Expressions;
 
 
 namespace TriviaPLay;
@@ -64,6 +65,7 @@ public partial class StartMenu : ContentPage
 
 			_questions = triviaResponse.Results;
 			_currentQuestionIndex = 0;
+			showQuestion();
 		}
 		catch (Exception ex)
 		{
@@ -83,23 +85,33 @@ public partial class StartMenu : ContentPage
 			return;
 
 		}
-		if (_currentQuestionIndex < _questions.Count)
+		if (_currentQuestionIndex >= _questions.Count)
 		{
 			DisplayAlert("Notice", "You've completed all the questions", "OK");
 			return;
 		}
 
-		var question = _questions[_currentQuestionIndex];
-		_correctAnswer = question.CorrectAnswer;
+		
 
-		//shuffles the answers
-		var options = question.IncorrectAnswers.Append(_correctAnswer).OrderBy(X => Guid.NewGuid()).ToList();
+		
+		var question = _questions[_currentQuestionIndex++];
+		_correctAnswer = question.correct_answers;
+
+		var answers = new List<string>(question.incoorect_answers)
+		{
+			question.correct_answers
+		};
+
+		
+		var random = new Random();
+		answers = answers.OrderBy(_ => random.Next()).ToList();
+
 
 		questionLabel.Text = System.Net.WebUtility.HtmlDecode(question.question);
-		Option1Ans.Text = System.Net.WebUtility.HtmlDecode(options[0]);
-        Option2Ans.Text = System.Net.WebUtility.HtmlDecode(options[1]);
-        Option3Ans.Text = System.Net.WebUtility.HtmlDecode(options[2]);
-        Option4Ans.Text = System.Net.WebUtility.HtmlDecode(options[3]);
+		Option1Ans.Text = System.Net.WebUtility.HtmlDecode(answers[0]);
+        Option2Ans.Text = System.Net.WebUtility.HtmlDecode(answers[1]);
+        Option3Ans.Text = System.Net.WebUtility.HtmlDecode(answers[2]);
+        Option4Ans.Text = System.Net.WebUtility.HtmlDecode(answers[3]);
 
 		Option1Ans.IsVisible = true;
         Option2Ans.IsVisible = true;
@@ -113,7 +125,6 @@ public partial class StartMenu : ContentPage
 		if (sender is Button button)
 		{
 			string selectedAnswer = button.Text;
-
 			if (selectedAnswer == _correctAnswer)
 			{
 				DisplayAlert("Coorect", "Nice", "Next");
@@ -126,9 +137,19 @@ public partial class StartMenu : ContentPage
 			}
 			_currentQuestionIndex++;
 			showQuestion();
+			//show next question or end game
+			if(_currentQuestionIndex < _questions.Count)
+			{
+				showQuestion();
+			}
+			else
+			{
+				DisplayAlert("Notice", "You've completed all questions", "OK");
+			}
 		}
 
 	}
+	
 
 	//start game
 	private void Button_Clicked(object sender, EventArgs e)
@@ -143,6 +164,13 @@ public partial class StartMenu : ContentPage
 		{
 			DisplayAlert("Error", "Please select a Diffculty", "OK");
 			return;
+		}
+		string selectedCategory = selCategory.SelectedItem.ToString();
+		string selectedDifficulty = selDifficulty.SelectedItem.ToString();
+
+		if (_categories.TryGetValue(selectedCategory, out var categoryID))
+		{
+			LoadQuestions(categoryID, selectedDifficulty);
 		}
 	}
 
