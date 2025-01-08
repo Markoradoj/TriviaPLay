@@ -15,16 +15,23 @@
                 TextColor="White"
                 Clicked="SetRedButtonClicked"/>
 
-        <Button Text="Red"
+        <Button Text="Green"
          BackgroundColor="Green"
          TextColor="White"
          Clicked="SetGreenButtonClicked"/>
 
 
-        <Button Text="Red"
+        <Button Text="Blue"
          BackgroundColor="Blue"
          TextColor="White"
          Clicked="SetBlueButtonClicked"/>
+
+        <Button Text="Return to menu"
+                FontSize="15"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Margin="0,0,0,20"
+                Clicked="OnBackButtonClicked"/>
 
 
     </VerticalStackLayout>
